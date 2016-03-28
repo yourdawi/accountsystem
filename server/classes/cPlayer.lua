@@ -63,6 +63,16 @@ if (isTimer(self.mTimer)) then
 			end
 end
 
+function CPlayer:destructor()
+	if(isTimer(self.mTimer)) then
+		killTimer(self.mTimer)
+	end
+	if(isElement(Players[self.ID])) then
+		Players[self.ID] = nil
+	end
+	self.LoggedIn = false
+end
+
 function CPlayer:addPlaytime()
   self.PlayTime = self.PlayTime + 1
   local stunden = math.floor(self.PlayTime/60)
