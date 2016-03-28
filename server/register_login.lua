@@ -162,4 +162,5 @@ function loginPlayer(player)
 	  enew(player,CPlayer,result["ID"],pname,result["Password"],result["Serial"],result["Geld"],result["Level"],result["Coins"],result["Bankgeld"],result["Adminlvl"],result["VIP"],result["Skin"],result["playtime"],result["position"],result["Securetoken"],result["Autologin"])
 	    outputChatBox("Auto-Login aktiv!",client,0,255,0)
 	    player:spawning()
+			triggerClientEvent(player,"cancelSmoothCamera",player)
 end

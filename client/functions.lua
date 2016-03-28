@@ -55,3 +55,10 @@ end
 function destroySMCamera()
 removeCamHandler()
 end
+
+addEvent("cancelSmoothCamera",true)
+
+addEventHandler("cancelSmoothCamera",getRootElement(),
+function()
+removeCamHandler()
+end)
