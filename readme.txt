@@ -36,4 +36,4 @@ spielerElement:save()					-Spieldaten speichern
 Bitte Zeile 14 in server/classes/cPlayer.lua entfernen, wenn ihr nicht das dxScoreboard benutzt.
 Ebenfalls kann nun alles von der Playtime ElementData gelöscht werden.
 
-
+OOP muss in der meta.xml auf true stehen.
