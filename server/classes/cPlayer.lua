@@ -16,10 +16,10 @@ exports.scoreboard:scoreboardAddColumn( "Playtime" )
 addEvent("checkSecureCode",true)
 addEventHandler("checkSecureCode",getRootElement(),
 function(code)
-if source:getToken() == code then
-  triggerClientEvent(source,"codeCheckErgebnis",source,true)
+if client:getToken() == code then
+  triggerClientEvent(client,"codeCheckErgebnis",client,true)
 else
-  outputChatBox("Dein Sicherheitscode stimmt nicht überrein!",source,255,0,0,true)
+  outputChatBox("Dein Sicherheitscode stimmt nicht überrein!",client,255,0,0,true)
 end
 end)
 
@@ -201,22 +201,22 @@ end
 addEvent("UserChangePassword",true)
 addEventHandler("UserChangePassword",getRootElement(),
 function(pw,token)
-  if token == source:getToken() then
+  if token == client:getToken() then
     pw = md5(pw)
-    DB:query("UPDATE players SET Password=? WHERE Name=?", pw, source:getName() )
-    outputChatBox("Passwort geändert!",source,255,255,255,true)
+    DB:query("UPDATE players SET Password=? WHERE Name=?", pw, client:getName() )
+    outputChatBox("Passwort geändert!",client,255,255,255,true)
   end
 end)
 
 addEventHandler("AutoLoginChange",getRootElement(),
 function(state)
   if state == true then
-    DB:query("UPDATE players SET Autologin=? WHERE Name=?", getPlayerSerial(source), source:getName() )
-    source.AutoLogin = getPlayerSerial(source)
-    outputChatBox("Autologin aktiviert!",source,255,255,255,true)
+    DB:query("UPDATE players SET Autologin=? WHERE Name=?", getPlayerSerial(client), client:getName() )
+    client.AutoLogin = getPlayerSerial(client)
+    outputChatBox("Autologin aktiviert!",client,255,255,255,true)
   else
-    DB:query("UPDATE players SET AutoLogin=? WHERE Name=?", "0", source:getName() )
-    source.AutoLogin = "0"
-    outputChatBox("Autologin deaktiviert!",source,255,255,255,true)
+    DB:query("UPDATE players SET AutoLogin=? WHERE Name=?", "0", client:getName() )
+    client.AutoLogin = "0"
+    outputChatBox("Autologin deaktiviert!",client,255,255,255,true)
   end
 end)

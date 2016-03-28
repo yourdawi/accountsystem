@@ -69,17 +69,19 @@ end)
 addEvent("onPlayerReady",true)
 addEventHandler("onPlayerReady",getRootElement(),
 function()
-local result = DB:query("SELECT * FROM players WHERE Name=?",getPlayerName(source))
-fadeCamera(source,true)
+if not client.LoggedIn then
+local result = DB:query("SELECT * FROM players WHERE Name=?",getPlayerName(client))
+fadeCamera(client,true)
 if #result > 0 then
 	result = result[1]
-	if result["Autologin"] == getPlayerSerial(source) then
-		loginPlayer(source)
+	if result["Autologin"] == getPlayerSerial(client) then
+		loginPlayer(client)
 	else
-  triggerClientEvent(source,"showPlayerLogin",source)
+  triggerClientEvent(client,"showPlayerLogin",client)
 	end
 else
-  triggerClientEvent(source,"showPlayerRegister",source)
+  triggerClientEvent(client,"showPlayerRegister",client)
+end
 end
 end)
 
@@ -101,7 +103,7 @@ local teamspeak = "KEIN TEAMSPEAK"
 local forum = "KEIN FORUM"
 local playercount = getPlayerCount()
 local maxplayers = getMaxPlayers()
-triggerClientEvent(source,"hierserverinfos",source,servername,teamspeak,forum,playercount,maxplayers)
+triggerClientEvent(client,"hierserverinfos",client,servername,teamspeak,forum,playercount,maxplayers)
 end)
 
 -------------------------------------------------------------
@@ -110,26 +112,28 @@ addEvent("neuerAccountRegistriert",true)
 
 addEventHandler("neuerAccountRegistriert",getRootElement(),
 function(pw)
-  local pname = getPlayerName(source)
+if not client.LoggedIn then
+  local pname = getPlayerName(client)
    local result = DB:query("SELECT * FROM players WHERE Name=?",pname)
      if #result > 0 then
-         outputChatBox("ERROR: ACCOUNT ALREADY CREATED",source,255,0,0)
+         outputChatBox("ERROR: ACCOUNT ALREADY CREATED",client,255,0,0)
      else
- 	pw = md5(pw)
- DB:query("INSERT INTO `players`(`Name`, `Password`, `Serial`, `Geld`, `Level`, `Coins`, `Bankgeld`,`Adminlvl`,`VIP`,`Skin`,`playtime`,`position`,`Securetoken`,`Autologin`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",getPlayerName(source),pw,getPlayerSerial(source),900,0,0,0,0,0,0,0,"0|0|0|0|4|0","UEBERGANG","0")
+ 	pw = hash("sha512",pw..""..tostring(#pw))
+ DB:query("INSERT INTO `players`(`Name`, `Password`, `Serial`, `Geld`, `Level`, `Coins`, `Bankgeld`,`Adminlvl`,`VIP`,`Skin`,`playtime`,`position`,`Securetoken`,`Autologin`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",getPlayerName(client),pw,getPlayerSerial(client),900,0,0,0,0,0,0,0,"0|0|0|0|4|0","UEBERGANG","0")
  result = DB:query("SELECT * FROM players WHERE Name=?",pname)
  result = result[1]
-   enew(source,CPlayer,result["ID"],pname,result["Password"],result["Serial"],result["Geld"],result["Level"],result["Coins"],result["Bankgeld"],result["Adminlvl"],result["VIP"],result["Skin"],result["playtime"],result["position"],result["Securetoken"],result["Autologin"])
-	 source:spawning()
-   triggerClientEvent(source,"closePlayerRegister",source)
-   local token = source:generateToken()
-   outputChatBox("Dein Sicherheitstoken lautet: "..token,source,0,255,0,true)
-   outputChatBox("Bitte speicher ihn! Damit kannst du dein Passwort ändern und wichtige Einstellungen treffen!",source,0,255,0,true)
-    DB:query("UPDATE players SET Securetoken=? WHERE Name=?", token, source:getName() )
-    outputChatBox("Er wurde in deine Zwischenablage hinzugefügt! (STRG + V um ihn einzufügen)",source,0,255,0,true)
-    triggerClientEvent(source,"saveToClipboard",source,token)
-		source.Securetoken = token
+   enew(client,CPlayer,result["ID"],pname,result["Password"],result["Serial"],result["Geld"],result["Level"],result["Coins"],result["Bankgeld"],result["Adminlvl"],result["VIP"],result["Skin"],result["playtime"],result["position"],result["Securetoken"],result["Autologin"])
+	 client:spawning()
+   triggerClientEvent(client,"closePlayerRegister",client)
+   local token = client:generateToken()
+   outputChatBox("Dein Sicherheitstoken lautet: "..token,client,0,255,0,true)
+   outputChatBox("Bitte speicher ihn! Damit kannst du dein Passwort ändern und wichtige Einstellungen treffen!",client,0,255,0,true)
+    DB:query("UPDATE players SET Securetoken=? WHERE Name=?", token, client:getName() )
+    outputChatBox("Er wurde in deine Zwischenablage hinzugefügt! (STRG + V um ihn einzufügen)",client,0,255,0,true)
+    triggerClientEvent(client,"saveToClipboard",client,token)
+		client.Securetoken = token
    end
+end
 end)
 
 -----------------------------------------------------------------
@@ -138,16 +142,16 @@ addEvent("checkLogin",true)
 
 addEventHandler("checkLogin",getRootElement(),
 function(pw)
-  local pname = getPlayerName(source)
+  local pname = getPlayerName(client)
   local result = DB:query("SELECT * FROM players WHERE Name=?",pname)
   result = result[1]
-  if result["Password"] == md5(pw) then
-  enew(source,CPlayer,result["ID"],pname,result["Password"],result["Serial"],result["Geld"],result["Level"],result["Coins"],result["Bankgeld"],result["Adminlvl"],result["VIP"],result["Skin"],result["playtime"],result["position"],result["Securetoken"],result["Autologin"])
-    outputChatBox("Erfolgreich eingeloggt!",source,0,255,0)
-    triggerClientEvent(source,"closePlayerLogin",source)
-    source:spawning()
+  if result["Password"] == hash("sha512",pw..""..tostring(#pw)) then
+  enew(client,CPlayer,result["ID"],pname,result["Password"],result["Serial"],result["Geld"],result["Level"],result["Coins"],result["Bankgeld"],result["Adminlvl"],result["VIP"],result["Skin"],result["playtime"],result["position"],result["Securetoken"],result["Autologin"])
+    outputChatBox("Erfolgreich eingeloggt!",client,0,255,0)
+    triggerClientEvent(client,"closePlayerLogin",client)
+    client:spawning()
   else
-    outputChatBox("Wrong password!",source,255,0,0)
+    outputChatBox("Wrong password!",client,255,0,0)
   end
 end)
 
@@ -156,6 +160,6 @@ function loginPlayer(player)
 	  local result = DB:query("SELECT * FROM players WHERE Name=?",pname)
 	  result = result[1]
 	  enew(player,CPlayer,result["ID"],pname,result["Password"],result["Serial"],result["Geld"],result["Level"],result["Coins"],result["Bankgeld"],result["Adminlvl"],result["VIP"],result["Skin"],result["playtime"],result["position"],result["Securetoken"],result["Autologin"])
-	    outputChatBox("Auto-Login aktiv!",source,0,255,0)
+	    outputChatBox("Auto-Login aktiv!",client,0,255,0)
 	    player:spawning()
 end

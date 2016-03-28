@@ -97,6 +97,7 @@ function showLogin()
   showCursor(true)
 login = guiCreateButton(550/sxx*sx, 410/syy*sy, 117/sxx*sx, 38/syy*sy, "Login", false)
 passwordLogin = guiCreateEdit(503/sxx*sx, 361/syy*sy, 149/sxx*sx, 28/syy*sy, "", false)
+guiEditSetMasked(passwordLogin, true)
 addEventHandler("onClientRender",getRootElement(),renderLogin)
   addEventHandler("onClientGUIClick", login,
     function()
