@@ -53,8 +53,7 @@ end)
 --BANCHECK
 addEventHandler("onPlayerConnect",getRootElement(),
 function(name,_,_,serial)
-local result = DB:query("SELECT * FROM ban WHERE Name=?",name)
-local resultt = DB:query("SELECT * FROM ban WHERE Serial=?",serial)
+local result = DB:query("SELECT * FROM ban WHERE Name=? OR Serial = ?",name, serial)
 if #result > 0 then
 	result = result[1]
 	if tonumber(result["Timestamp"]) > getTimestamp() then
@@ -63,17 +62,6 @@ if #result > 0 then
 		local Aminuten = restzeit/60
 		local minuten = math.floor(Aminuten - (60*stunden))
 		cancelEvent(true,"Du bist noch "..stunden.." Stunden und "..minuten.." Minuten gebannt! ("..result["Grund"]..")")
-	end
-else
-	if #resultt > 0 then
-		resultt = resultt[1]
-		if tonumber(resultt["Timestamp"]) > getTimestamp() then
-			local restzeit = tonumber(resultt["Timestamp"]) - getTimestamp()
-			local stunden = math.floor(restzeit/3600)
-			local Aminuten = restzeit/60
-			local minuten = math.floor(Aminuten - (60*stunden))
-			cancelEvent(true,"Du bist noch "..stunden.." Stunden und "..minuten.." Minuten gebannt! ("..resultt["Grund"]..")")
-		end
 	end
 end
 end)
