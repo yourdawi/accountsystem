@@ -1,0 +1,18 @@
+<meta>
+  <info author="Dawi" name="Accountsystem" version="1.0" type="script"/>
+<oop>true</oop>
+<!--RES-->
+<file src="res/login.png"/>
+<file src="res/register.png"/>
+<!--SHARED-->
+<script src="shared/classlib.lua" type="shared"/>
+<script src="shared/functions.lua" type="shared"/>
+<!--SERVER-->
+<script src="server/classes/cDatabase.lua" type="server"/>
+<script src="server/classes/cPlayer.lua" type="server"/>
+<script src="server/register_login.lua" type="server"/>
+<!--CLIENT-->
+<script src="client/functions.lua" type="client"/>
+<script src="client/register_login.lua" type="client"/>
+<script src="client/accountsettings.lua" type="client"/>
+</meta>
