@@ -174,7 +174,7 @@ end
 
 function CPlayer:minuteTimer()
   self:addPlaytime()
-if (self.Played_Time%60 == 0) then
+if (self.PlayTime%60 == 0) then
   outputChatBox("++++STUNDENBONUS++++",self,0,255,0)
   local paydaywin = self.Bankgeld/100*3
   outputChatBox("BANK: Du hast "..paydaywin.."$ Zinsen erhalten!",self,0,255,0)
