@@ -38,6 +38,9 @@ spielerElement:clipboard(text)			-Text in die Zwischenablage kopieren
 Save:
 spielerElement:save()					-Spieldaten speichern
 
+Spielzeit:
+spielerElement:getPlaytime()             -Spielzeit in Minuten
+
 Beispiel:
 addCommandHandler("machmalmist",
 function(player)
