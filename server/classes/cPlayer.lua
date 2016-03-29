@@ -194,6 +194,12 @@ if (self.PlayTime%60 == 0) then
 end
 end
 
+---Spielzeit
+
+function CPlayer:getPlaytime()
+	return self.PlayTime
+end
+
 function CPlayer:quit()
   self:save()
 end
