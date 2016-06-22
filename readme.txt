@@ -1,12 +1,15 @@
 GERMAN
 
-Dies ist ein Gamemode unabhängiges, selbstständiges Accountsystem.
+Dies ist ein Gamemode unabhï¿½ngiges, selbststï¿½ndiges Accountsystem.
 Bitte importiere die sql in deine Datenbank und passe die cDatabase.lua unter server/classes an.
 
-Ebenfall befindet sich in der cDatabase.lua das gibserverinfos Event, dort kannst du deine Forum bzw. Teamspeak Adresse definieren. Die angegebenen Daten in der register_login.lua unter client werden davon überschrieben.
+Ebenfall befindet sich in der cDatabase.lua das gibserverinfos Event, dort kannst du deine Forum bzw. Teamspeak Adresse definieren. Die angegebenen Daten in der register_login.lua unter client werden davon ï¿½berschrieben.
 
 Bei Fragen kontaktiere mich im mta-sa.org Forum (yourdawi.de)
 
+FAQ:
+F: Wie Ã¤ndere ich den Spawn?
+A: Du findest in der register_login.lua unter "Server" in Zeile 122 "0|0|0|0|4|0" das ist der Spawn. (Interior|Dimension|X|Y|Z|Rotation Z).
 
 Funktionen: (Serverseitig)
 Geld: (integer)
@@ -28,7 +31,7 @@ spielerElement:getSkin()		  	    -Skin ID erhalten
 Ban: (Element,Integer,String)
 spielerElement:ban(Admin,Zeit,Grund)    -Spieler bannen (Admin als Element, Zeit in Stunden, Grund)
 
-Player: 
+Player:
 spielerElement:getName()			    -Namen herausbekommen
 spielerElement:getSerial()				-Serial herausbekommen
 
@@ -49,6 +52,6 @@ function(player)
 end)
 
 Bitte Zeile 14 in server/classes/cPlayer.lua entfernen, wenn ihr nicht das dxScoreboard benutzt.
-Ebenfalls kann nun alles von der Playtime ElementData gelöscht werden.
+Ebenfalls kann nun alles von der Playtime ElementData gelï¿½scht werden.
 
 OOP muss in der meta.xml auf true stehen.
