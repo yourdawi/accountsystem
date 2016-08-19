@@ -52,6 +52,11 @@ function CPlayer:constructor(id,name,password,serial,geld,level,coins,bankgeld,a
   setCameraTarget(self,self)
   Players[self.ID] = self
 
+  bindKey(self,"m","both",
+  function()
+  showCursor(self,not isCursorShowing(self))
+  end)
+
 self.eOnQuit = bind(CPlayer.quit,self)
 addEventHandler("onPlayerQuit",self,self.eOnQuit)
 
@@ -169,6 +174,15 @@ end
 
 function CPlayer:clipboard(text)
   triggerClientEvent(self,"saveToClipboard",self)
+end
+
+---FAHRZEUGE-----
+function CPlayer:addPlayerCar(model,x,y,z,rx,ry,rz,int,dim)
+  local vehicle = createVehicle(model, x,y,z,rx,ry,rz, self:getName())
+  local koords = tostring(int).."|"..tostring(dim).."|"..tostring(x).."|"..tostring(y).."|"..tostring(z).."|"..tostring(rx).."|"..tostring(ry).."|"..tostring(rz)
+  enew(vehicle, CVehicle, math.random(1,99999),model,self:getName(),koords,self:getName())
+   DB:query("INSERT INTO `vehicles`(`Model`, `Owner`, `Koords`, `Numberplate`) VALUES (?,?,?,?)",model,self:getName(),koords,self:getName())
+   return vehicle
 end
 
 ----SAVE SYSTEM-----

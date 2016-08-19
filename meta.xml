@@ -11,8 +11,14 @@
 <script src="server/classes/cDatabase.lua" type="server"/>
 <script src="server/classes/cPlayer.lua" type="server"/>
 <script src="server/register_login.lua" type="server"/>
+<script src="server/classes/cVehicle.lua" type="server"/>
+<script src="server/manager/mVehicle.lua" type="server"/>
 <!--CLIENT-->
 <script src="client/functions.lua" type="client"/>
 <script src="client/register_login.lua" type="client"/>
 <script src="client/accountsettings.lua" type="client"/>
+
+
+<!--DEV-->
+<script src="server/devcmd.lua" type="server"/>
 </meta>
