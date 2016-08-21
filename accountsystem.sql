@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 21. Aug 2016 um 18:36
+-- Erstellungszeit: 21. Aug 2016 um 21:20
 -- Server-Version: 10.1.8-MariaDB
 -- PHP-Version: 5.6.14
 
@@ -31,6 +31,22 @@ CREATE TABLE `ban` (
   `Serial` varchar(256) NOT NULL,
   `Timestamp` varchar(256) NOT NULL,
   `Grund` varchar(256) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `house`
+--
+
+CREATE TABLE `house` (
+  `ID` int(11) NOT NULL,
+  `Owner` varchar(256) NOT NULL,
+  `X` float NOT NULL,
+  `Y` float NOT NULL,
+  `Z` float NOT NULL,
+  `Interior` varchar(256) NOT NULL,
+  `Price` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -82,6 +98,12 @@ ALTER TABLE `ban`
   ADD PRIMARY KEY (`Name`);
 
 --
+-- Indizes für die Tabelle `house`
+--
+ALTER TABLE `house`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indizes für die Tabelle `players`
 --
 ALTER TABLE `players`
@@ -97,6 +119,11 @@ ALTER TABLE `vehicles`
 -- AUTO_INCREMENT für exportierte Tabellen
 --
 
+--
+-- AUTO_INCREMENT für Tabelle `house`
+--
+ALTER TABLE `house`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT für Tabelle `players`
 --

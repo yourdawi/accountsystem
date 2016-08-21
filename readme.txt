@@ -1,5 +1,8 @@
 GERMAN
 
+Bitte benutzt nur die veröffentlichten Versionen.
+https://github.com/yourdawi/accountsystem/releases
+
 Dies ist ein Gamemode unabhängiges, selbstständiges Accountsystem.
 Bitte importiere die sql in deine Datenbank und passe die cDatabase.lua unter server/classes an.
 
@@ -43,6 +46,11 @@ Fahrzeug:
 fahrzeugElement:changeEngineState()  -Motor an/aus
 fahrzeugElement:lock(player)				 -Fahrzeug auf zu. Player optional.
 spielerElement:addPlayerCar(model,x,y,z,rx,ry,rz,int,dim)   -Fahrzeug einem Spieler geben (wird erstellt).
+
+Häuser: (v1.2|SOON)
+hausElement:enter(player)          -Spieler in Haus einlassen.
+hausElement:leave(player)					 -Spieler aus Haus herauslassen.
+spielerElement:addPlayerHouse(x,y,z,interior,preis)			-Interior bedeutet ID|X|Y|Z
 
 Zusatz: (String)
 spielerElement:clipboard(text)			-Text in die Zwischenablage kopieren

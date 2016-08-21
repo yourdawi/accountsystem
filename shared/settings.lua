@@ -25,3 +25,9 @@ firstSpawn = "0|0|0|0|4|0"  --(Interior|Dimension|X|Y|Z|Rotation Z)
 UseVehicleSystem = true
 --Change it to false if you want to use your own vehiclesystem
 ---------------------------
+
+--Use this default Housesystem?---
+
+useHouseSystem = true
+--Change it to false if you want to use your own housesystem
+---------------------------

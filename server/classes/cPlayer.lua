@@ -57,7 +57,7 @@ function CPlayer:constructor(id,name,password,serial,geld,level,coins,bankgeld,a
   showCursor(self,not isCursorShowing(self))
   end)
 
----FAHRZEUG BINDS/Funktionen------
+---FAHRZEUG BIND------
 if UseVehicleSystem == true then
 ----------------------------------
 bindKey(self,"x","down",
@@ -215,6 +215,18 @@ function CPlayer:isPlayersCar()
 end
 -------------------------------------
 end
+
+---Häuser-----
+if useHouseSystem == true then
+
+function CPlayer:addPlayerHouse(x,y,z,interior,price)
+  local house = createPickup(x,y,z,3,1272,0)
+  enew(house,CHouse,math.random(1,99999),self:getName(),x,y,z,interior,price)
+  DB:query("INSERT INTO `house`(`Owner`, `X`, `Y`, `Z`, `Interior`, `Price`) VALUES (?,?,?,?,?,?)",self:getName(),x,y,z,interior,price)
+end
+-------------------------
+end
+---------------------
 ----SAVE SYSTEM-----
 
 function CPlayer:save()
