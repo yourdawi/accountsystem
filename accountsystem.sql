@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 28. Mrz 2016 um 15:19
+-- Erstellungszeit: 21. Aug 2016 um 18:36
 -- Server-Version: 10.1.8-MariaDB
 -- PHP-Version: 5.6.14
 
@@ -57,6 +57,20 @@ CREATE TABLE `players` (
   `Autologin` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `vehicles`
+--
+
+CREATE TABLE `vehicles` (
+  `ID` int(11) NOT NULL,
+  `Model` int(11) NOT NULL,
+  `Owner` varchar(256) NOT NULL,
+  `Koords` varchar(256) NOT NULL,
+  `Numberplate` varchar(256) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
 -- Indizes der exportierten Tabellen
 --
@@ -74,6 +88,12 @@ ALTER TABLE `players`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indizes für die Tabelle `vehicles`
+--
+ALTER TABLE `vehicles`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- AUTO_INCREMENT für exportierte Tabellen
 --
 
@@ -81,6 +101,11 @@ ALTER TABLE `players`
 -- AUTO_INCREMENT für Tabelle `players`
 --
 ALTER TABLE `players`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT für Tabelle `vehicles`
+--
+ALTER TABLE `vehicles`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
