@@ -1,6 +1,6 @@
 GERMAN
 
-Dies ist ein Gamemode unabh�ngiges, selbstst�ndiges Accountsystem.
+Dies ist ein Gamemode unabhängiges, selbstständiges Accountsystem.
 Bitte importiere die sql in deine Datenbank und passe die cDatabase.lua unter server/classes an.
 
 Ebenfall befindet sich in der cDatabase.lua das gibserverinfos Event, dort kannst du deine Forum bzw. Teamspeak Adresse definieren. Die angegebenen Daten in der register_login.lua unter client werden davon �berschrieben.
@@ -34,6 +34,10 @@ spielerElement:ban(Admin,Zeit,Grund)    -Spieler bannen (Admin als Element, Zeit
 Player:
 spielerElement:getName()			    -Namen herausbekommen
 spielerElement:getSerial()				-Serial herausbekommen
+
+Fahrzeug:
+fahrzeugElement:changeEngineState()  -Motor an/aus
+fahrzeugElement:lock(player)				 -Fahrzeug auf zu. Player optional.
 
 Zusatz: (String)
 spielerElement:clipboard(text)			-Text in die Zwischenablage kopieren
