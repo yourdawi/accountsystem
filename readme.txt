@@ -42,6 +42,7 @@ spielerElement:getSerial()				-Serial herausbekommen
 Fahrzeug:
 fahrzeugElement:changeEngineState()  -Motor an/aus
 fahrzeugElement:lock(player)				 -Fahrzeug auf zu. Player optional.
+spielerElement:addPlayerCar(model,x,y,z,rx,ry,rz,int,dim)   -Fahrzeug einem Spieler geben (wird erstellt).
 
 Zusatz: (String)
 spielerElement:clipboard(text)			-Text in die Zwischenablage kopieren

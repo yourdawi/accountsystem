@@ -57,7 +57,7 @@ function CPlayer:constructor(id,name,password,serial,geld,level,coins,bankgeld,a
   showCursor(self,not isCursorShowing(self))
   end)
 
----FAHRZEUG BINDS------
+---FAHRZEUG BINDS/Funktionen------
 if UseVehicleSystem == true then
 ----------------------------------
 bindKey(self,"x","down",
@@ -92,17 +92,6 @@ function CPlayer:destructor()
 		Players[self.ID] = nil
 	end
 	self.LoggedIn = false
-end
-
-function CPlayer:isPlayersCar()
-  local vehicle = getPedOccupiedVehicle(self)
-  if isPedInVehicle(self) then
-    if vehicle:getOwner() == self:getName() then
-      return true
-    else
-      return false
-    end
-  end
 end
 
 function CPlayer:addPlaytime()
@@ -212,6 +201,17 @@ function CPlayer:addPlayerCar(model,x,y,z,rx,ry,rz,int,dim)
   enew(vehicle, CVehicle, math.random(1,99999),model,self:getName(),koords,self:getName())
    DB:query("INSERT INTO `vehicles`(`Model`, `Owner`, `Koords`, `Numberplate`) VALUES (?,?,?,?)",model,self:getName(),koords,self:getName())
    return vehicle
+end
+
+function CPlayer:isPlayersCar()
+  local vehicle = getPedOccupiedVehicle(self)
+  if isPedInVehicle(self) then
+    if vehicle:getOwner() == self:getName() then
+      return true
+    else
+      return false
+    end
+  end
 end
 -------------------------------------
 end
