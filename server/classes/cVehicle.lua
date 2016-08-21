@@ -43,8 +43,15 @@ function CVehicle:lock(player)
   if getPlayerName(player) == self.Owner then
     setVehicleLocked(self,not self.Lock)
     self.Lock = not self.Lock
-    outputChatBox("ABGESCHLOSSEN? "..tostring(self.Lock))
   else
     outputChatBox("Dies ist nicht dein Fahrzeug!",player,255,0,0)
   end
+end
+
+function CVehicle:changeEngineState()
+  self:setEngineState(not self:getEngineState())
+end
+
+function CVehicle:getOwner()
+  return self.Owner
 end

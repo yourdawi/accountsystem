@@ -4,6 +4,7 @@
 <!--RES-->
 <file src="res/login.png"/>
 <file src="res/register.png"/>
+<file src="res/digital-7.ttf"/>
 <!--SHARED-->
 <script src="shared/classlib.lua" type="shared"/>
 <script src="shared/functions.lua" type="shared"/>
@@ -17,8 +18,10 @@
 <script src="client/functions.lua" type="client"/>
 <script src="client/register_login.lua" type="client"/>
 <script src="client/accountsettings.lua" type="client"/>
+<script src="client/ui.lua" type="client"/>
 
 
 <!--DEV-->
 <script src="server/devcmd.lua" type="server"/>
+<export function="getElementSpeed" type="server"/>
 </meta>

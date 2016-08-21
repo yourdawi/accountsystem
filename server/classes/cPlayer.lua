@@ -57,6 +57,19 @@ function CPlayer:constructor(id,name,password,serial,geld,level,coins,bankgeld,a
   showCursor(self,not isCursorShowing(self))
   end)
 
+---FAHRZEUG BINDS------
+bindKey(self,"x","down",
+  function()
+    if self:isPlayersCar() then
+      local vehicle = getPedOccupiedVehicle(self)
+        if getPedOccupiedVehicleSeat(self) == 0 then
+          vehicle:changeEngineState()
+        end
+    end
+  end)
+
+
+------------------------
 self.eOnQuit = bind(CPlayer.quit,self)
 addEventHandler("onPlayerQuit",self,self.eOnQuit)
 
@@ -76,6 +89,17 @@ function CPlayer:destructor()
 		Players[self.ID] = nil
 	end
 	self.LoggedIn = false
+end
+
+function CPlayer:isPlayersCar()
+  local vehicle = getPedOccupiedVehicle(self)
+  if isPedInVehicle(self) then
+    if vehicle:getOwner() == self:getName() then
+      return true
+    else
+      return false
+    end
+  end
 end
 
 function CPlayer:addPlaytime()
