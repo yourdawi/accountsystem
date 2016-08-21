@@ -23,6 +23,5 @@
 
 
 <!--DEV-->
-<script src="server/devcmd.lua" type="server"/>
-<export function="getElementSpeed" type="server"/>
+<!--script src="server/devcmd.lua" type="server"/-->
 </meta>
