@@ -3,13 +3,17 @@ GERMAN
 Dies ist ein Gamemode unabhängiges, selbstständiges Accountsystem.
 Bitte importiere die sql in deine Datenbank und passe die cDatabase.lua unter server/classes an.
 
-Ebenfall befindet sich in der cDatabase.lua das gibserverinfos Event, dort kannst du deine Forum bzw. Teamspeak Adresse definieren. Die angegebenen Daten in der register_login.lua unter client werden davon �berschrieben.
-
-Bei Fragen kontaktiere mich im mta-sa.org Forum (yourdawi.de)
+Bei Fragen kontaktiere mich im mta-sa.org Forum (yourdawi.de), aber lies zuerst die FAQ.
 
 FAQ:
+F: Wie ändere ich die Teamspeak/Forum/Servername Daten?
+A: In der settings.lua im shared Ordner.
+
+F: Ich möchte das Fahrzeugsystem nicht nutzen. Wie kann ich es deaktivieren?
+A: In der settings.lua im shared Ordner. Ändere UseVehicleSystem auf false.
+
 F: Wie ändere ich den Spawn?
-A: Du findest in der register_login.lua unter "Server" in Zeile 122 "0|0|0|0|4|0" das ist der Spawn. (Interior|Dimension|X|Y|Z|Rotation Z).
+A: In der settings.lua im shared Ordner. (Interior|Dimension|X|Y|Z|Rotation Z).
 
 Funktionen: (Serverseitig)
 Geld: (integer)

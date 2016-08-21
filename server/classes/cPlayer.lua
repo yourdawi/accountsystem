@@ -58,6 +58,8 @@ function CPlayer:constructor(id,name,password,serial,geld,level,coins,bankgeld,a
   end)
 
 ---FAHRZEUG BINDS------
+if UseVehicleSystem == true then
+----------------------------------
 bindKey(self,"x","down",
   function()
     if self:isPlayersCar() then
@@ -67,7 +69,8 @@ bindKey(self,"x","down",
         end
     end
   end)
-
+-----------------------------------------
+end
 
 ------------------------
 self.eOnQuit = bind(CPlayer.quit,self)
@@ -201,6 +204,8 @@ function CPlayer:clipboard(text)
 end
 
 ---FAHRZEUGE-----
+if UseVehicleSystem == true then
+--------------------------------
 function CPlayer:addPlayerCar(model,x,y,z,rx,ry,rz,int,dim)
   local vehicle = createVehicle(model, x,y,z,rx,ry,rz, self:getName())
   local koords = tostring(int).."|"..tostring(dim).."|"..tostring(x).."|"..tostring(y).."|"..tostring(z).."|"..tostring(rx).."|"..tostring(ry).."|"..tostring(rz)
@@ -208,7 +213,8 @@ function CPlayer:addPlayerCar(model,x,y,z,rx,ry,rz,int,dim)
    DB:query("INSERT INTO `vehicles`(`Model`, `Owner`, `Koords`, `Numberplate`) VALUES (?,?,?,?)",model,self:getName(),koords,self:getName())
    return vehicle
 end
-
+-------------------------------------
+end
 ----SAVE SYSTEM-----
 
 function CPlayer:save()

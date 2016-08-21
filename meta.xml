@@ -8,6 +8,7 @@
 <!--SHARED-->
 <script src="shared/classlib.lua" type="shared"/>
 <script src="shared/functions.lua" type="shared"/>
+<script src="shared/settings.lua" type="shared"/>
 <!--SERVER-->
 <script src="server/classes/cDatabase.lua" type="server"/>
 <script src="server/classes/cPlayer.lua" type="server"/>

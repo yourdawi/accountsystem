@@ -98,12 +98,12 @@ addEvent("gibserverinfos",true)
 
 addEventHandler("gibserverinfos",getRootElement(),
 function()
-local servername = getServerName()
-local teamspeak = "KEIN TEAMSPEAK"
-local forum = "KEIN FORUM"
+local servernameI = servername
+local teamspeakI = teamspeak
+local forumI = forum
 local playercount = getPlayerCount()
 local maxplayers = getMaxPlayers()
-triggerClientEvent(client,"hierserverinfos",client,servername,teamspeak,forum,playercount,maxplayers)
+triggerClientEvent(client,"hierserverinfos",client,servername,teamspeakI,forumI,playercount,maxplayers)
 end)
 
 -------------------------------------------------------------
@@ -119,7 +119,7 @@ if not client.LoggedIn then
          outputChatBox("ERROR: ACCOUNT ALREADY CREATED",client,255,0,0)
      else
  	pw = hash("sha512",pw..""..tostring(#pw))
- DB:query("INSERT INTO `players`(`Name`, `Password`, `Serial`, `Geld`, `Level`, `Coins`, `Bankgeld`,`Adminlvl`,`VIP`,`Skin`,`playtime`,`position`,`Securetoken`,`Autologin`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",getPlayerName(client),pw,getPlayerSerial(client),900,0,0,0,0,0,0,0,"0|0|0|0|4|0","UEBERGANG","0")
+ DB:query("INSERT INTO `players`(`Name`, `Password`, `Serial`, `Geld`, `Level`, `Coins`, `Bankgeld`,`Adminlvl`,`VIP`,`Skin`,`playtime`,`position`,`Securetoken`,`Autologin`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",getPlayerName(client),pw,getPlayerSerial(client),900,0,0,0,0,0,0,0,firstSpawn,"UEBERGANG","0")
  result = DB:query("SELECT * FROM players WHERE Name=?",pname)
  result = result[1]
    enew(client,CPlayer,result["ID"],pname,result["Password"],result["Serial"],result["Geld"],result["Level"],result["Coins"],result["Bankgeld"],result["Adminlvl"],result["VIP"],result["Skin"],result["playtime"],result["position"],result["Securetoken"],result["Autologin"])

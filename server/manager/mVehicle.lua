@@ -1,3 +1,14 @@
+--[[
+#######################################
+#######################################
+###########Erstellt von Dawi###########
+##########github.com/yourdawi##########
+##############yourdawi.de##############
+#######################################
+#######################################
+]]
+if UseVehicleSystem == true then
+------------------------------------------------------------
 CVehicleManager = {}
 
 function CVehicleManager:constructor()
@@ -14,3 +25,5 @@ function CVehicleManager:constructor()
 end
 
 VehicleManager = new(CVehicleManager)
+------------------------------------------------------------------------------
+end
