@@ -264,14 +264,28 @@ addEvent("UserChangePassword",true)
 addEventHandler("UserChangePassword",getRootElement(),
 function(pw,token)
   if token == client:getToken() then
-    pw = md5(pw)
+    	pw = hash("sha512",pw..""..tostring(#pw))
     DB:query("UPDATE players SET Password=? WHERE Name=?", pw, client:getName() )
     outputChatBox("Passwort geändert!",client,255,255,255,true)
   end
 end)
 
+addEvent("adminChangePassword",true)
+
+addEventHandler("adminChangePassword",getRootElement(),
+function(user,pw)
+  if checkFakeEvent(client,source) then
+	if client.Adminlvl >= 1 then
+    pw = hash("sha512",pw..""..tostring(#pw))
+		DB:query("UPDATE players SET Password=? WHERE Name=?", pw, user )
+    outputChatBox("Password für Spieler "..user.." geändert!",client,0,255,0)
+  end
+end
+end)
+
 addEventHandler("AutoLoginChange",getRootElement(),
 function(state)
+  if checkFakeEvent(client,source) then
   if state == true then
     DB:query("UPDATE players SET Autologin=? WHERE Name=?", getPlayerSerial(client), client:getName() )
     client.AutoLogin = getPlayerSerial(client)
@@ -281,4 +295,5 @@ function(state)
     client.AutoLogin = "0"
     outputChatBox("Autologin deaktiviert!",client,255,255,255,true)
   end
+end
 end)

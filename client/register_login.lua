@@ -16,7 +16,7 @@ local Maxplayers = 0
 
 local sx,sy = guiGetScreenSize()
 local sxx,syy = 1280,720
-
+guiSetInputMode("no_binds_when_editing")
 addEvent("hierserverinfos",true)
 
 addEventHandler("hierserverinfos",getRootElement(),

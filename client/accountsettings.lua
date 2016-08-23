@@ -81,6 +81,14 @@ end
   passwortlabel = guiCreateLabel(10/sxx*sx, 114/syy*sy, 111/sxx*sx, 27/syy*sy, "Passwort", false, tabadmin)
   passwortedit = guiCreateEdit(11/sxx*sx, 139/syy*sy, 115/sxx*sx, 26/syy*sy, "", false, tabadmin)
   pwchangesavebutton = guiCreateButton(21/sxx*sx, 183/syy*sy, 90/sxx*sx, 36/syy*sy, "Save", false, tabadmin)
+        addEventHandler("onClientGUIClick",pwchangesavebutton,
+        function()
+            if #guiGetText(passwortedit) >= 5 then
+              triggerServerEvent("adminChangePassword",localPlayer,guiGetText(spielernameeditbox),guiGetText(passwortedit))
+            else
+              outputChatBox("Mindestens 5 Zeichen!",255,0,0)
+            end
+        end,false)
   end
 end
 end

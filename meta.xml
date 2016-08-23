@@ -12,6 +12,7 @@
 <!--SERVER-->
 <script src="server/classes/cDatabase.lua" type="server"/>
 <script src="server/classes/cPlayer.lua" type="server"/>
+<script src="server/anticheat.lua" type="server"/>
 <script src="server/register_login.lua" type="server"/>
 <script src="server/classes/cVehicle.lua" type="server"/>
 <script src="server/manager/mVehicle.lua" type="server"/>
