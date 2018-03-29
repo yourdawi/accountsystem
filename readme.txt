@@ -72,3 +72,76 @@ Bitte Zeile 14 in server/classes/cPlayer.lua entfernen, wenn ihr nicht das dxSco
 Ebenfalls kann nun alles von der Playtime ElementData gel�scht werden.
 
 OOP muss in der meta.xml auf true stehen.
+
+ENGLISH
+
+Please use always the released version.
+https://github.com/yourdawi/accountsystem/releases
+
+This is a standalone Accountsystem, no specific Gamemode needed.
+Please import the sql in your Database and edit the cDatabase.lua (server/classes).
+
+FAQ:
+Q: How can i change the Teamspeak/Forum/Servername?
+A: Settings.lua (shared folder)
+
+Q: I do not want to use the Vehiclesystem. How can i change it?
+A: settings.lua (shared folder). Change UseVehicleSystem to false.
+
+F: How can i change the spawn?
+A: settings.lua (shared folder) (Interior|Dimension|X|Y|Z|Rotation Z).
+
+Functions: (Serverside)
+Money: (integer)
+playerElement:takeMoney(GELD)   	    
+playerElement:giveMoney(Geld)   	    
+playerElement:setMoney(Geld)     	    
+playerElement:getMoney()          	    
+
+Bankmoney: (integer)
+playerElement:giveBankMoney(Geld) 	    
+playerElement:takeBankMoney(Geld)	    
+playerElement:setBankMoney(Geld) 	 	
+playerElement:getBankMoney()     		
+
+Skin: (integer)
+playerElement:setSkin(ID)        	    
+playerElement:getSkin()		  	   
+
+Ban: (Element,Integer,String)
+playerElement:ban(Admin,Time,Reason)    
+
+Player:
+playerElement:getName()			    
+playerElement:getSerial()				
+
+Vehicle:
+vehicleElement:changeEngineState()  
+vehicleElement:lock(player)				 -Player is not needed
+playerElement:addPlayerCar(model,x,y,z,rx,ry,rz,int,dim)   -Create a vehicle and add it to a player
+
+House: (v1.2|SOON)
+houseElement:enter(player)          
+houseElement:leave(player)					 
+playerElement:addPlayerHouse(x,y,z,interior,preis)			-Interior means ID|X|Y|Z
+
+Extension: (String)
+playerElement:clipboard(text)			-Text to clipboard
+
+Save:
+playerElement:save()				
+
+Playtime:
+playerElement:getPlaytime()             -Playtime in minutes
+
+Example:
+addCommandHandler("doanything",
+function(player)
+	player:giveBankMoney(141)
+	player:ban(player,1,"Oh")
+end)
+
+Please remove row 14 in server/classes/cPlayer.lua, if you don´t use the default dxScoreboard.
+You can also delete any playtime elementdata.
+
+You must set oop to true in the meta.xml
